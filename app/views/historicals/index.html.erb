@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all historicals
+      List of All Historical Results
     </h1>
   </div>
 </div>
@@ -59,9 +59,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Date
@@ -80,23 +77,11 @@
         </th>
 
         <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
       <% @list_of_historicals.each do |a_historical| %>
       <tr>
-        <td>
-          <%= a_historical.id %>
-        </td>
-
         <td>
           <%= a_historical.date %>
         </td>
@@ -111,13 +96,6 @@
 
         <td>
           <%= a_historical.punishment %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_historical.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_historical.updated_at) %> ago
         </td>
 
         <td>

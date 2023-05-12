@@ -16,6 +16,45 @@
   </head>
 
   <body>
+  <ul>
+      <li>
+        <a href = "/"> Home </a>
+      </li>
+      <li>
+        <a href = "/user_sign_up"> Sign up </a>
+      </li>
+      <li>
+        <a href="/user_sign_in">Sign in</a>
+      </li>
+      <li>
+        <a href="/user_sign_out">Sign out</a>
+      </li>
+      <li>
+        <a href = "/members"> Members </a>
+      </li>
+      <li>
+        <a href = "/historicals"> Historical Results </a>
+      </li>
+      <li>
+        <a href = "/upcomings"> Upcoming Trip </a>
+      </li>   
+      <li>
+        <a href = "/galleries"> Gallery </a>
+      </li>                     
+    </ul>
+
+
+  <% if notice.present?%>
+  <div style="border: thin green solid; color: green">
+  <%= notice%>
+  </div>
+  <% end %>
+
+  <% if alert.present?%>
+  <div style="border: thin red solid; color: red">
+  <%= alert%>
+  </div>
+  <% end %>
     <%= yield %>
   </body>
 </html>

@@ -30,7 +30,8 @@
         Image
       </dt>
       <dd>
-        <%= @the_upcoming.image %>
+        <%#= @the_upcoming.image %>
+        <%= image_tag(@the_upcoming.image, width: "200") if @the_upcoming.image.present? %>
       </dd>
 
       <dt>

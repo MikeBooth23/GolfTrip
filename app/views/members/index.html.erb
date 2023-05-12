@@ -68,7 +68,7 @@
     <table border="1">
       <tr>
         <th>
-          ID
+          Image
         </th>
 
         <th>
@@ -87,17 +87,6 @@
           Bio
         </th>
 
-        <th>
-          Image
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
 
         <th>
         </th>
@@ -106,7 +95,8 @@
       <% @list_of_members.each do |a_member| %>
       <tr>
         <td>
-          <%= a_member.id %>
+          <%#= a_member.image %>
+          <%= image_tag(a_member.image, width: "200") if a_member.image.present? %>
         </td>
 
         <td>
@@ -123,17 +113,6 @@
 
         <td>
           <%= a_member.bio %>
-        </td>
-
-        <td>
-          <%= a_member.image %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_member.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_member.updated_at) %> ago
         </td>
 
         <td>

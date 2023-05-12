@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get("/", {:controller => "members", :action => "index"})
   # Routes for the User account:
 
   get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })        
@@ -45,48 +46,32 @@ Rails.application.routes.draw do
   get("/historicals/:path_id", { :controller => "historicals", :action => "show" })
   # UPDATE
   post("/modify_historical/:path_id", { :controller => "historicals", :action => "update" })
-  
   # DELETE
   get("/delete_historical/:path_id", { :controller => "historicals", :action => "destroy" })
-
   #------------------------------
 
   # Routes for the Upcoming resource:
-
   # CREATE
-  post("/insert_upcoming", { :controller => "upcomings", :action => "create" })
-          
+  post("/insert_upcoming", { :controller => "upcomings", :action => "create" })  
   # READ
   get("/upcomings", { :controller => "upcomings", :action => "index" })
-  
   get("/upcomings/:path_id", { :controller => "upcomings", :action => "show" })
-  
   # UPDATE
-  
   post("/modify_upcoming/:path_id", { :controller => "upcomings", :action => "update" })
-  
   # DELETE
   get("/delete_upcoming/:path_id", { :controller => "upcomings", :action => "destroy" })
-
   #------------------------------
 
   # Routes for the Member resource:
 
   # CREATE
-  post("/insert_member", { :controller => "members", :action => "create" })
-          
+  post("/insert_member", { :controller => "members", :action => "create" })    
   # READ
   get("/members", { :controller => "members", :action => "index" })
-  
   get("/members/:path_id", { :controller => "members", :action => "show" })
-  
   # UPDATE
-  
   post("/modify_member/:path_id", { :controller => "members", :action => "update" })
-  
   # DELETE
   get("/delete_member/:path_id", { :controller => "members", :action => "destroy" })
-
   #------------------------------
-
 end

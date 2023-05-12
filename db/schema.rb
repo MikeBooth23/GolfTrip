@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_12_154027) do
+ActiveRecord::Schema.define(version: 2023_05_12_155412) do
 
   create_table "galleries", force: :cascade do |t|
     t.string "trip"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2023_05_12_154027) do
     t.string "first_name"
     t.string "last_name"
     t.string "password_digest"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
