@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Upcoming #<%= @the_upcoming.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/upcomings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_upcoming/<%= @the_upcoming.id %>">
+          Delete upcoming
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @the_upcoming.location %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_upcoming.image %>
+      </dd>
+
+      <dt>
+        Price range
+      </dt>
+      <dd>
+        <%= @the_upcoming.price_range %>
+      </dd>
+
+      <dt>
+        Votes
+      </dt>
+      <dd>
+        <%= @the_upcoming.votes %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_upcoming.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_upcoming.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit upcoming
+    </h2>
+
+    <form action="/modify_upcoming/<%= @the_upcoming.id %>"  method="post" >
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location" value="<%= @the_upcoming.location %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_upcoming.image %>">
+      </div>
+
+      <div>
+        <label for="price_range_box">
+          Price range
+        </label>
+
+        <input type="text" id="price_range_box" name="query_price_range" value="<%= @the_upcoming.price_range %>">
+      </div>
+
+      <div>
+        <label for="votes_box">
+          Votes
+        </label>
+
+        <input type="text" id="votes_box" name="query_votes" value="<%= @the_upcoming.votes %>">
+      </div>
+
+      <button>
+        Update upcoming
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

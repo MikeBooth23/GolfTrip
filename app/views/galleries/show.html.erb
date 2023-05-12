@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Gallery #<%= @the_gallery.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/galleries">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_gallery/<%= @the_gallery.id %>">
+          Delete gallery
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Trip
+      </dt>
+      <dd>
+        <%= @the_gallery.trip %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_gallery.image %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_gallery.description %>
+      </dd>
+
+      <dt>
+        Votes
+      </dt>
+      <dd>
+        <%= @the_gallery.votes %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_gallery.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_gallery.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit gallery
+    </h2>
+
+    <form action="/modify_gallery/<%= @the_gallery.id %>"  method="post" >
+      <div>
+        <label for="trip_box">
+          Trip
+        </label>
+
+        <input type="text" id="trip_box" name="query_trip" value="<%= @the_gallery.trip %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_gallery.image %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_gallery.description %>">
+      </div>
+
+      <div>
+        <label for="votes_box">
+          Votes
+        </label>
+
+        <input type="text" id="votes_box" name="query_votes" value="<%= @the_gallery.votes %>">
+      </div>
+
+      <button>
+        Update gallery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

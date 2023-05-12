@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all historicals
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new historical
+    </h2>
+
+    <form action="/insert_historical" method="post">
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date">
+      </div>
+
+      <div>
+        <label for="winning_team_box">
+          Winning team
+        </label>
+
+        <input type="text" id="winning_team_box" name="query_winning_team">
+      </div>
+
+      <div>
+        <label for="losing_team_box">
+          Losing team
+        </label>
+
+        <input type="text" id="losing_team_box" name="query_losing_team">
+      </div>
+
+      <div>
+        <label for="punishment_box">
+          Punishment
+        </label>
+
+        <input type="text" id="punishment_box" name="query_punishment">
+      </div>
+
+      <button>
+        Create historical
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Date
+        </th>
+
+        <th>
+          Winning team
+        </th>
+
+        <th>
+          Losing team
+        </th>
+
+        <th>
+          Punishment
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_historicals.each do |a_historical| %>
+      <tr>
+        <td>
+          <%= a_historical.id %>
+        </td>
+
+        <td>
+          <%= a_historical.date %>
+        </td>
+
+        <td>
+          <%= a_historical.winning_team %>
+        </td>
+
+        <td>
+          <%= a_historical.losing_team %>
+        </td>
+
+        <td>
+          <%= a_historical.punishment %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_historical.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_historical.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/historicals/<%= a_historical.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

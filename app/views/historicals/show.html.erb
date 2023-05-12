@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Historical #<%= @the_historical.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/historicals">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_historical/<%= @the_historical.id %>">
+          Delete historical
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_historical.date %>
+      </dd>
+
+      <dt>
+        Winning team
+      </dt>
+      <dd>
+        <%= @the_historical.winning_team %>
+      </dd>
+
+      <dt>
+        Losing team
+      </dt>
+      <dd>
+        <%= @the_historical.losing_team %>
+      </dd>
+
+      <dt>
+        Punishment
+      </dt>
+      <dd>
+        <%= @the_historical.punishment %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_historical.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_historical.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit historical
+    </h2>
+
+    <form action="/modify_historical/<%= @the_historical.id %>"  method="post" >
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_historical.date %>">
+      </div>
+
+      <div>
+        <label for="winning_team_box">
+          Winning team
+        </label>
+
+        <input type="text" id="winning_team_box" name="query_winning_team" value="<%= @the_historical.winning_team %>">
+      </div>
+
+      <div>
+        <label for="losing_team_box">
+          Losing team
+        </label>
+
+        <input type="text" id="losing_team_box" name="query_losing_team" value="<%= @the_historical.losing_team %>">
+      </div>
+
+      <div>
+        <label for="punishment_box">
+          Punishment
+        </label>
+
+        <input type="text" id="punishment_box" name="query_punishment" value="<%= @the_historical.punishment %>">
+      </div>
+
+      <button>
+        Update historical
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

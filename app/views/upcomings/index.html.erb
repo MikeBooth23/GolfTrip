@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all upcomings
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new upcoming
+    </h2>
+
+    <form action="/insert_upcoming" method="post">
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="price_range_box">
+          Price range
+        </label>
+
+        <input type="text" id="price_range_box" name="query_price_range">
+      </div>
+
+      <div>
+        <label for="votes_box">
+          Votes
+        </label>
+
+        <input type="text" id="votes_box" name="query_votes">
+      </div>
+
+      <button>
+        Create upcoming
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Location
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Price range
+        </th>
+
+        <th>
+          Votes
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_upcomings.each do |an_upcoming| %>
+      <tr>
+        <td>
+          <%= an_upcoming.id %>
+        </td>
+
+        <td>
+          <%= an_upcoming.location %>
+        </td>
+
+        <td>
+          <%= an_upcoming.image %>
+        </td>
+
+        <td>
+          <%= an_upcoming.price_range %>
+        </td>
+
+        <td>
+          <%= an_upcoming.votes %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_upcoming.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_upcoming.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/upcomings/<%= an_upcoming.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

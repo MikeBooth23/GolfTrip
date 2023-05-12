@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all members
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new member
+    </h2>
+
+    <form action="/insert_member" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="nickname_box">
+          Nickname
+        </label>
+
+        <input type="text" id="nickname_box" name="query_nickname">
+      </div>
+
+      <div>
+        <label for="hometown_box">
+          Hometown
+        </label>
+
+        <input type="text" id="hometown_box" name="query_hometown">
+      </div>
+
+      <div>
+        <label for="bio_box">
+          Bio
+        </label>
+
+        <input type="text" id="bio_box" name="query_bio">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <button>
+        Create member
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Nickname
+        </th>
+
+        <th>
+          Hometown
+        </th>
+
+        <th>
+          Bio
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_members.each do |a_member| %>
+      <tr>
+        <td>
+          <%= a_member.id %>
+        </td>
+
+        <td>
+          <%= a_member.name %>
+        </td>
+
+        <td>
+          <%= a_member.nickname %>
+        </td>
+
+        <td>
+          <%= a_member.hometown %>
+        </td>
+
+        <td>
+          <%= a_member.bio %>
+        </td>
+
+        <td>
+          <%= a_member.image %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_member.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_member.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/members/<%= a_member.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
