@@ -6,6 +6,7 @@
   </div>
 </div>
 
+<% if session.fetch("user_id") == 1 %>
 <hr>
 
 <div>
@@ -61,7 +62,7 @@
     </form>
   </div>
 </div>
-
+<% end %>
 <hr>
 <div>
   <div>
@@ -87,9 +88,10 @@
           Bio
         </th>
 
-
+<% if session.fetch("user_id") == 1 %>
         <th>
         </th>
+<% end %>
       </tr>
 
       <% @list_of_members.each do |a_member| %>
@@ -114,12 +116,13 @@
         <td>
           <%= a_member.bio %>
         </td>
-
+<% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/members/<%= a_member.id %>">
             Show details
           </a>
         </td>
+<% end %>
       </tr>
       <% end %>
     </table>

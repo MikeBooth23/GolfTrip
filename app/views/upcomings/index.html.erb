@@ -5,15 +5,18 @@
     </h1>
   </div>
 </div>
-
+    <% if session.fetch("user_id") == 1 %>
 <hr>
 
 <div>
   <div>
+    
     <h2>
       Add a new upcoming
     </h2>
 
+
+    
     <form action="/insert_upcoming" method="post">
       <div>
         <label for="location_box">
@@ -51,6 +54,7 @@
         Create upcoming
       </button>
     </form>
+    <% end %>
   </div>
 </div>
 
@@ -59,9 +63,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Location
@@ -86,17 +87,14 @@
         <th>
           Votes
         </th>
-
+<% if session.fetch("user_id") == 1 %>
         <th>
         </th>
+<% end %>
       </tr>
 
       <% @list_of_upcomings.each do |an_upcoming| %>
       <tr>
-        <td>
-          <%= an_upcoming.id %>
-        </td>
-
         <td>
           <%= an_upcoming.location %>
         </td>
@@ -120,12 +118,13 @@
         <td>
           <%= an_upcoming.votes %>
         </td>
-
+<% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/upcomings/<%= an_upcoming.id %>">
             Show details
           </a>
         </td>
+<% end %>
       </tr>
       <% end %>
     </table>

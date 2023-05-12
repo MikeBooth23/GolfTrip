@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   # READ
   get("/historicals", { :controller => "historicals", :action => "index" })
   get("/historicals/:path_id", { :controller => "historicals", :action => "show" })
+  # ADMIN
+  get("/historicals/admin", { :controller => "historicals", :action => "index" })
+  #get("/historicals/admin/:path_id", { :controller => "historicals", :action => "show" })
   # UPDATE
   post("/modify_historical/:path_id", { :controller => "historicals", :action => "update" })
   # DELETE

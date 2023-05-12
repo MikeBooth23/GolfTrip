@@ -20,15 +20,18 @@
       <li>
         <a href = "/"> Home </a>
       </li>
+      <% if session.fetch("user_id") == nil %>
       <li>
         <a href = "/user_sign_up"> Sign up </a>
       </li>
       <li>
         <a href="/user_sign_in">Sign in</a>
       </li>
+      <% else %>
       <li>
         <a href="/user_sign_out">Sign out</a>
       </li>
+      <% end %>
       <li>
         <a href = "/members"> Members </a>
       </li>
@@ -45,13 +48,13 @@
 
 
   <% if notice.present?%>
-  <div style="border: thin green solid; color: green">
+  <div style="color: green">
   <%= notice%>
   </div>
   <% end %>
 
   <% if alert.present?%>
-  <div style="border: thin red solid; color: red">
+  <div style="color: red">
   <%= alert%>
   </div>
   <% end %>

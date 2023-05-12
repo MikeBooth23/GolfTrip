@@ -75,9 +75,10 @@
         <th>
           Votes
         </th>
-
+<% if session.fetch("user_id") == 1 %>
         <th>
         </th>
+<% end %>
       </tr>
 
       <% @list_of_galleries.each do |a_gallery| %>
@@ -99,12 +100,13 @@
         <td>
           <%= a_gallery.votes %>
         </td>
-
+<% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/galleries/<%= a_gallery.id %>">
             Show details
           </a>
         </td>
+<% end %>
       </tr>
       <% end %>
     </table>

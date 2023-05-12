@@ -7,7 +7,7 @@ class UserAuthenticationController < ApplicationController
   end
 
   def create_cookie
-    user = User.where({ :email => params.fetch("query_email") }).first
+    user = User.where({ :username => params.fetch("query_username") }).first
     
     the_supplied_password = params.fetch("query_password")
     
@@ -22,7 +22,7 @@ class UserAuthenticationController < ApplicationController
         redirect_to("/", { :notice => "Signed in successfully." })
       end
     else
-      redirect_to("/user_sign_in", { :alert => "No user with that email address." })
+      redirect_to("/user_sign_in", { :alert => "No user with that username." })
     end
   end
 
@@ -38,6 +38,7 @@ class UserAuthenticationController < ApplicationController
 
   def create
     @user = User.new
+    @user.username = params.fetch("query_username")
     @user.first_name = params.fetch("query_first_name")
     @user.last_name = params.fetch("query_last_name")
     @user.password = params.fetch("query_password")
