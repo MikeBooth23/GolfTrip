@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # Routes for the Date vote resource:
+
+
+
   get("/", {:controller => "members", :action => "index"})
   # Routes for the User account:
 
@@ -63,6 +67,24 @@ Rails.application.routes.draw do
   post("/modify_upcoming/:path_id", { :controller => "upcomings", :action => "update" })
   # DELETE
   get("/delete_upcoming/:path_id", { :controller => "upcomings", :action => "destroy" })
+  # UPVOTE
+  get("/upvote/:location_id", { :controller => "upcomings", :action => "upvote"})
+  # DOWNVOTE
+  get("/downvote/:location_id", { :controller => "upcomings", :action => "downvote"})
+      # CREATE DATE VOTE
+      post("/insert_date_vote", { :controller => "upcomings", :action => "create_date" }) 
+      # READ DATE VOTE
+      #get("/date_votes", { :controller => "date_votes", :action => "index" })
+      get("/date_votes/:path_id", { :controller => "upcomings", :action => "show_date" })
+      # UPDATE DATE VOTE
+      post("/modify_date_vote/:path_id", { :controller => "upcomings", :action => "update_date" })
+      # DELETE DATE VOTE
+      get("/delete_date_vote/:path_id", { :controller => "upcomings", :action => "destroy_date" })
+      # UPVOTE
+      get("/date_upvote/:date_id", { :controller => "upcomings", :action => "date_upvote"})
+      # DOWNVOTE
+      get("/date_downvote/:date_id", { :controller => "upcomings", :action => "date_downvote"})
+      #------------------------------
   #------------------------------
 
   # Routes for the Member resource:

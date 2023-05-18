@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_12_181527) do
+ActiveRecord::Schema.define(version: 2023_05_18_021508) do
+
+  create_table "date_votes", force: :cascade do |t|
+    t.date "date"
+    t.integer "votes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "galleries", force: :cascade do |t|
     t.string "trip"

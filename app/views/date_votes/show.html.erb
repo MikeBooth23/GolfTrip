@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Date vote #<%= @the_date_vote.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/date_votes">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_date_vote/<%= @the_date_vote.id %>">
+          Delete date vote
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_date_vote.date %>
+      </dd>
+
+      <dt>
+        Votes
+      </dt>
+      <dd>
+        <%= @the_date_vote.votes %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_date_vote.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_date_vote.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit date vote
+    </h2>
+
+    <form action="/modify_date_vote/<%= @the_date_vote.id %>"  method="post" >
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_date_vote.date %>">
+      </div>
+
+      <div>
+        <label for="votes_box">
+          Votes
+        </label>
+
+        <input type="text" id="votes_box" name="query_votes" value="<%= @the_date_vote.votes %>">
+      </div>
+
+      <button>
+        Update date vote
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

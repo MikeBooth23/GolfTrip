@@ -22,7 +22,7 @@ class GalleriesController < ApplicationController
     the_gallery.trip = params.fetch("query_trip")
     the_gallery.image = params.fetch("query_image")
     the_gallery.description = params.fetch("query_description")
-    the_gallery.votes = params.fetch("query_votes")
+    the_gallery.votes = 0
 
     if the_gallery.valid?
       the_gallery.save

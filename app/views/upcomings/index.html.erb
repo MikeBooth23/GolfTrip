@@ -1,12 +1,110 @@
+
+
+
+
 <div>
   <div>
     <h1>
-      List of all upcomings
+      Potential Trip Dates
     </h1>
   </div>
 </div>
-    <% if session.fetch("user_id") == 1 %>
+
 <hr>
+
+<% if session.fetch("user_id") == 1 %>
+<div>
+  <div>
+    <h2>
+      Add a new date vote
+    </h2>
+
+    <form action="/insert_date_vote" method="post">
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date">
+      </div>
+
+      <button>
+        Add new date
+      </button>
+    </form>
+  </div>
+</div>
+
+<% end %>
+
+<div>
+  <div>
+    <table border="1">
+      <tr>
+
+        <th>
+          Date
+        </th>
+
+        <th>
+          Vote Count
+        </th>
+
+        <th>
+        Vote
+        </th>
+<% if session.fetch("user_id") == 1 %>
+        <th>
+
+        </th>
+<% end %>
+      </tr>
+
+      <% @list_of_date_votes.each do |a_date_vote| %>
+      <tr>
+
+        <td>
+          <%= a_date_vote.date %>
+        </td>
+
+        <td>
+          <%= a_date_vote.votes %>
+        </td>
+
+        <td>
+        <div>
+        <a href="/date_upvote/<%= a_date_vote.id %>">
+          Upvote
+        </a>
+          </div>
+        <a href="/date_downvote/<%= a_date_vote.id %>">
+          Downvote
+        </a>
+        </td>
+<% if session.fetch("user_id") == 1 %>
+        <td>
+          <a href="/date_votes/<%= a_date_vote.id %>">
+            Show details
+          </a>
+        </td>
+<% end %>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h1>
+      Potential Trip Destinations
+    </h1>
+  </div>
+</div>
+
+<% if session.fetch("user_id") == 1 %>
 
 <div>
   <div>
@@ -42,14 +140,6 @@
         <input type="text" id="price_range_box" name="query_price_range">
       </div>
 
-      <div>
-        <label for="votes_box">
-          Votes
-        </label>
-
-        <input type="text" id="votes_box" name="query_votes">
-      </div>
-
       <button>
         Create upcoming
       </button>
@@ -58,7 +148,6 @@
   </div>
 </div>
 
-<hr>
 <div>
   <div>
     <table border="1">
@@ -81,7 +170,7 @@
         </th>
 
         <th>
-          Updated at
+          Vote
         </th>
         
         <th>
@@ -101,7 +190,7 @@
 
         <td>
           <%#= an_upcoming.image %>
-          <%= image_tag(an_upcoming.image, width: "200") if an_upcoming.image.present? %>
+          <%= image_tag(an_upcoming.image, width: "300") if an_upcoming.image.present? %>
         </td>
 
         <td>
@@ -111,8 +200,16 @@
         <td>
           <%= time_ago_in_words(an_upcoming.created_at) %> ago
         </td>
+
         <td>
-          <%= time_ago_in_words(an_upcoming.updated_at) %> ago
+          <div>
+        <a href="/upvote/<%= an_upcoming.id %>">
+          Upvote
+        </a>
+          </div>
+        <a href="/downvote/<%= an_upcoming.id %>">
+          Downvote
+        </a>
         </td>
         
         <td>
@@ -125,8 +222,8 @@
           </a>
         </td>
 <% end %>
+<% end %>
       </tr>
-      <% end %>
     </table>
   </div>
 </div>
