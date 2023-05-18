@@ -4,9 +4,9 @@
 
 <div>
   <div>
-    <h1>
+    <h2>
       Potential Trip Dates
-    </h1>
+    </h2>
   </div>
 </div>
 
@@ -19,27 +19,29 @@
       Add a new date vote
     </h2>
 
-    <form action="/insert_date_vote" method="post">
+    <div class="col-2">
+    <form action="/insert_date_vote" method="post" class="form-label">
       <div>
         <label for="date_box">
           Date
         </label>
 
-        <input type="date" id="date_box" name="query_date">
+        <input type="date" id="date_box" name="query_date" class="form-control">
       </div>
 
-      <button>
+      <button class="btn btn-primary">
         Add new date
       </button>
     </form>
+    </div>
   </div>
 </div>
 
 <% end %>
 
 <div>
-  <div>
-    <table border="1">
+  <div class="col-6">
+    <table border="1" class="table text-center align-middle">
       <tr>
 
         <th>
@@ -98,9 +100,9 @@
 
 <div>
   <div>
-    <h1>
+    <h2>
       Potential Trip Destinations
-    </h1>
+    </h2>
   </div>
 </div>
 
@@ -114,14 +116,14 @@
     </h2>
 
 
-    
-    <form action="/insert_upcoming" method="post">
+    <div class="col-6">
+    <form action="/insert_upcoming" method="post" class="form-label">
       <div>
         <label for="location_box">
           Location
         </label>
 
-        <input type="text" id="location_box" name="query_location">
+        <input type="text" id="location_box" name="query_location" class="form-control">
       </div>
 
       <div>
@@ -129,7 +131,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="text" id="image_box" name="query_image" class="form-control">
       </div>
 
       <div>
@@ -137,20 +139,21 @@
           Price range
         </label>
 
-        <input type="text" id="price_range_box" name="query_price_range">
+        <input type="text" id="price_range_box" name="query_price_range" class="form-control">
       </div>
 
-      <button>
+      <button class="btn btn-primary">
         Create upcoming
       </button>
     </form>
     <% end %>
+    <div>
   </div>
 </div>
 
 <div>
-  <div>
-    <table border="1">
+  <div class="col-9">
+    <table border="1" class="table text-center align-middle">
       <tr>
 
         <th>
@@ -190,7 +193,7 @@
 
         <td>
           <%#= an_upcoming.image %>
-          <%= image_tag(an_upcoming.image, width: "300") if an_upcoming.image.present? %>
+          <%= image_tag(an_upcoming.image, width: "200") if an_upcoming.image.present? %>
         </td>
 
         <td>

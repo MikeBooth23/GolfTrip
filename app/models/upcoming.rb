@@ -12,3 +12,6 @@
 #
 class Upcoming < ApplicationRecord
 end
+
+
+# validates :user_id, { :uniqueness => { :scope => :upcoming_id } }

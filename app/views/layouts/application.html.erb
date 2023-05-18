@@ -13,38 +13,52 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.css">
+  <style>
+  body {
+    background-image: url("https://wallpaperset.com/w/full/1/a/8/496123.jpg");
+    background-size: cover
+  }
+  </style>
+
   </head>
 
   <body>
-  <ul>
-      <li>
-        <a href = "/"> Home </a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid">
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href = "/"> Home </a>
       </li>
       <% if session.fetch("user_id") == nil %>
-      <li>
-        <a href = "/user_sign_up"> Sign up </a>
+      <li class="nav-item">
+        <a class="nav-link" href = "/user_sign_up"> Sign up </a>
       </li>
-      <li>
-        <a href="/user_sign_in">Sign in</a>
+      <li class="nav-item">
+        <a class="nav-link" href="/user_sign_in">Sign in</a>
       </li>
       <% else %>
-      <li>
-        <a href="/user_sign_out">Sign out</a>
+      <li class="nav-item">
+        <a class="nav-link" href="/user_sign_out">Sign out</a>
       </li>
       <% end %>
-      <li>
-        <a href = "/members"> Members </a>
+      <li class="nav-item">
+        <a class="nav-link" href = "/members"> Members </a>
       </li>
-      <li>
-        <a href = "/historicals"> Historical Results </a>
+      <li class="nav-item">
+        <a class="nav-link" href = "/historicals"> Historical Results </a>
       </li>
-      <li>
-        <a href = "/upcomings"> Upcoming Trip </a>
+      <li class="nav-item">
+        <a class="nav-link" href = "/upcomings"> Upcoming Trip </a>
       </li>   
-      <li>
-        <a href = "/galleries"> Gallery </a>
+      <li class="nav-item">
+        <a class="nav-link" href = "/galleries"> Gallery </a>
       </li>                     
     </ul>
+  </div>
+  </div>
+  </nav>
 
 
   <% if notice.present?%>

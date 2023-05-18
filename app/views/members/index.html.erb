@@ -10,18 +10,18 @@
 <hr>
 
 <div>
-  <div>
+  <div class="col-6">
     <h2>
       Add a new member
     </h2>
 
-    <form action="/insert_member" method="post">
+    <form action="/insert_member" method="post" class="form-label">
       <div>
         <label for="name_box">
           Name
         </label>
 
-        <input type="text" id="name_box" name="query_name">
+        <input type="text" id="name_box" name="query_name" class="form-control">
       </div>
 
       <div>
@@ -29,7 +29,7 @@
           Nickname
         </label>
 
-        <input type="text" id="nickname_box" name="query_nickname">
+        <input type="text" id="nickname_box" name="query_nickname" class="form-control">
       </div>
 
       <div>
@@ -37,7 +37,7 @@
           Hometown
         </label>
 
-        <input type="text" id="hometown_box" name="query_hometown">
+        <input type="text" id="hometown_box" name="query_hometown" class="form-control">
       </div>
 
       <div>
@@ -45,7 +45,7 @@
           Bio
         </label>
 
-        <input type="text" id="bio_box" name="query_bio">
+        <input type="text" id="bio_box" name="query_bio" class="form-control">
       </div>
 
       <div>
@@ -53,10 +53,10 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="text" id="image_box" name="query_image" class="form-control">
       </div>
 
-      <button>
+      <button class="btn btn-primary">
         Create member
       </button>
     </form>
@@ -66,7 +66,7 @@
 <hr>
 <div>
   <div>
-    <table border="1">
+    <table border="1" class="table text-center align-middle">
       <tr>
         <th>
           Image
@@ -113,7 +113,7 @@
           <%= a_member.hometown %>
         </td>
 
-        <td>
+        <td class="text-start">
           <%= a_member.bio %>
         </td>
 <% if session.fetch("user_id") == 1 %>
