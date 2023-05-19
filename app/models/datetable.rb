@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: date_votes
+# Table name: datetables
 #
 #  id         :integer          not null, primary key
 #  date       :date
@@ -8,8 +8,6 @@
 #  upvotes    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  date_id    :integer
-#  user_id    :integer
 #
-class DateVote < ApplicationRecord
+class Datetable < ApplicationRecord
 end

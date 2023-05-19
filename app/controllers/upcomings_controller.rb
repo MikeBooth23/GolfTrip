@@ -4,9 +4,9 @@ class UpcomingsController < ApplicationController
 
     @list_of_upcomings = matching_upcomings.order({ :created_at => :desc })
 
-    matching_date_votes = DateVote.all
+    matching_date_votes = Datetable.all
 
-    @list_of_date_votes = matching_date_votes.order({ :created_at => :desc })
+    @list_of_dates = matching_date_votes.order({ :created_at => :desc })
 
     render({ :template => "upcomings/index.html.erb" })
 
@@ -63,20 +63,32 @@ class UpcomingsController < ApplicationController
   end
 
   def upvote
+    vote = LocationVote.new
     id = params.fetch("location_id")
+    vote.location_id = id
+    vote.user_id = session.fetch("user_id")
+    vote.upvotes = 1
+    vote.save
+    # id = params.fetch("location_id")
     the_upcoming = Upcoming.where({ :id => id}).at(0)
     
-    the_upcoming.votes += 1
+    the_upcoming.upvote = LocationVote.all.where({:location_id => id}).sum(:upvotes)
     the_upcoming.save
 
     redirect_to("/upcomings", { :notice => "Upvoted!"} )
   end
 
   def downvote
+    vote = LocationVote.new
     id = params.fetch("location_id")
+    vote.location_id = id
+    vote.user_id = session.fetch("user_id")
+    vote.downvotes = 1
+    vote.save
+    # id = params.fetch("location_id")
     the_upcoming = Upcoming.where({ :id => id}).at(0)
     
-    the_upcoming.votes -= 1
+    the_upcoming.downvote = LocationVote.all.where({:location_id => id}).sum(:downvotes)
     the_upcoming.save
 
     redirect_to("/upcomings", { :notice => "Downvoted"} )
@@ -85,7 +97,7 @@ class UpcomingsController < ApplicationController
   def show_date
     the_id = params.fetch("path_id")
 
-    matching_date_votes = DateVote.where({ :id => the_id })
+    matching_date_votes = Datetable.where({ :id => the_id })
 
     @the_date_vote = matching_date_votes.at(0)
 
@@ -93,21 +105,23 @@ class UpcomingsController < ApplicationController
   end
 
   def create_date
-    the_date_vote = DateVote.new
-    the_date_vote.date = params.fetch("query_date")
-    the_date_vote.votes = 0
+    require 'date'
+    the_date = Datetable.new
+    the_date.date = params.fetch("query_date")
+    the_date.upvotes = 0
+    the_date.downvotes = 0
 
-    if the_date_vote.valid?
-      the_date_vote.save
+    if the_date.valid?
+      the_date.save
       redirect_to("/upcomings", { :notice => "Date vote created successfully." })
     else
-      redirect_to("/upcomings", { :alert => the_date_vote.errors.full_messages.to_sentence })
+      redirect_to("/upcomings", { :alert => the_date.errors.full_messages.to_sentence })
     end
   end
 
   def update_date
     the_id = params.fetch("path_id")
-    the_date_vote = DateVote.where({ :id => the_id }).at(0)
+    the_date_vote = Datetable.where({ :id => the_id }).at(0)
 
     the_date_vote.date = params.fetch("query_date")
     the_date_vote.votes = params.fetch("query_votes")
@@ -122,7 +136,7 @@ class UpcomingsController < ApplicationController
 
   def destroy_date
     the_id = params.fetch("path_id")
-    the_date_vote = DateVote.where({ :id => the_id }).at(0)
+    the_date_vote = Datetable.where({ :id => the_id }).at(0)
 
     the_date_vote.destroy
 
@@ -130,23 +144,67 @@ class UpcomingsController < ApplicationController
   end
 
   def date_upvote
+    vote = DateVote.new
     id = params.fetch("date_id")
-    the_date = DateVote.where({ :id => id}).at(0)
-    
-    the_date.votes += 1
+    vote.date_id = id
+    vote.user_id = session.fetch("user_id")
+    vote.upvotes = 1
+    vote.save
+
+
+    the_date = Datetable.where({ :id => id}).at(0)
+
+    the_date.upvotes = DateVote.all.where({:date_id => id}).sum(:upvotes)
     the_date.save
 
     redirect_to("/upcomings", { :notice => "Upvoted!"} )
   end
 
+  def undo_date_upvote
+    the_id = params.fetch("date_id")
+    the_upvote = DateVote.where({ :date_id => the_id }).where({:user_id => session.fetch("user_id")}).where({:upvotes => 1}).at(0)
+
+    the_upvote.upvotes=0
+    the_upvote.save
+
+    the_date = Datetable.where({ :id => the_id}).at(0)
+
+    the_date.upvotes = DateVote.all.where({:date_id => the_id}).sum(:upvotes)
+    the_date.save
+
+    redirect_to("/upcomings", { :notice => "You removed your upvote!"} )
+  end
+
   def date_downvote
+    vote = DateVote.new
     id = params.fetch("date_id")
-    the_date = DateVote.where({ :id => id}).at(0)
-    
-    the_date.votes -= 1
+    vote.date_id = id
+    vote.user_id = session.fetch("user_id")
+    vote.downvotes = 1
+    vote.save
+
+
+    the_date = Datetable.where({ :id => id}).at(0)
+
+    the_date.downvotes = DateVote.all.where({:date_id => id}).sum(:downvotes)
     the_date.save
 
     redirect_to("/upcomings", { :notice => "Downvoted"} )
+  end
+
+  def undo_date_downvote
+    the_id = params.fetch("date_id")
+    the_upvote = DateVote.where({ :date_id => the_id }).where({:user_id => session.fetch("user_id")}).where({:downvotes => 1}).at(0)
+
+    the_upvote.downvotes=0
+    the_upvote.save
+
+    the_date = Datetable.where({ :id => the_id}).at(0)
+
+    the_date.downvotes = DateVote.all.where({:date_id => the_id}).sum(:downvotes)
+    the_date.save
+
+    redirect_to("/upcomings", { :notice => "You removed your upvote!"} )
   end
 
 end

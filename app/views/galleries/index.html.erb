@@ -9,18 +9,18 @@
 <hr>
 
 <div>
-  <div>
+  <div class="col-3">
     <h2>
       Add a new photo
     </h2>
 
-    <form action="/insert_gallery" method="post">
+    <form action="/insert_gallery" method="post" class="form-label">
       <div>
         <label for="trip_box">
           Trip
         </label>
 
-        <input type="text" id="trip_box" name="query_trip">
+        <input type="text" id="trip_box" name="query_trip" class="form-control">
       </div>
 
       <div>
@@ -28,7 +28,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="text" id="image_box" name="query_image" class="form-control">
       </div>
 
       <div>
@@ -36,7 +36,7 @@
           Description
         </label>
 
-        <input type="text" id="description_box" name="query_description">
+        <input type="text" id="description_box" name="query_description" class="form-control">
       </div>
 
       <button class="btn btn-primary">
@@ -47,7 +47,7 @@
 </div>
 
 <hr>
-<div>
+<div class="col-9">
   <div>
     <table border="1" class="table text-center align-middle">
       <tr>

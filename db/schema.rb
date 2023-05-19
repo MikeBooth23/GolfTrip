@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_18_021508) do
+ActiveRecord::Schema.define(version: 2023_05_19_202037) do
 
   create_table "date_votes", force: :cascade do |t|
     t.date "date"
-    t.integer "votes"
+    t.integer "downvotes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "upvotes"
+    t.integer "date_id"
+    t.integer "user_id"
+  end
+
+  create_table "datetables", force: :cascade do |t|
+    t.date "date"
+    t.integer "upvotes"
+    t.integer "downvotes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -37,6 +48,15 @@ ActiveRecord::Schema.define(version: 2023_05_18_021508) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "location_votes", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "downvotes"
+    t.integer "upvotes"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.string "nickname"
@@ -51,9 +71,10 @@ ActiveRecord::Schema.define(version: 2023_05_18_021508) do
     t.string "location"
     t.string "image"
     t.string "price_range"
-    t.integer "votes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "downvote"
+    t.integer "upvote"
   end
 
   create_table "users", force: :cascade do |t|

@@ -49,7 +49,11 @@
         </th>
 
         <th>
-          Vote Count
+          Upvotes
+        </th>
+
+        <th>
+          Downvotes
         </th>
 
         <th>
@@ -62,30 +66,47 @@
 <% end %>
       </tr>
 
-      <% @list_of_date_votes.each do |a_date_vote| %>
+      <% @list_of_dates.each do |a_date| %>
       <tr>
 
         <td>
-          <%= a_date_vote.date %>
+          <%= a_date.date %>
         </td>
 
         <td>
-          <%= a_date_vote.votes %>
+          <%= a_date.upvotes %>
+        </td>
+
+        <td>
+          <%= a_date.downvotes %>
         </td>
 
         <td>
         <div>
-        <a href="/date_upvote/<%= a_date_vote.id %>">
+        <% if DateVote.all.where({:user_id => session.fetch("user_id")}).where({:date_id => a_date.id}).sum(:upvotes) == 1 %>
+        <a href="/undo_date_upvote/<%= a_date.id %>">
+          Undo Upvote
+        </a>
+        <% else %>
+        <a href="/date_upvote/<%= a_date.id %>">
           Upvote
         </a>
+        <% end %>
           </div>
-        <a href="/date_downvote/<%= a_date_vote.id %>">
+        <% if DateVote.all.where({:user_id => session.fetch("user_id")}).where({:date_id => a_date.id}).sum(:downvotes) == 1 %>
+        <a href="/undo_date_downvote/<%= a_date.id %>">
+          Undo Downvote
+        </a>       
+        <% else %>
+        <a href="/date_downvote/<%= a_date.id %>">
           Downvote
         </a>
+        <% end %>
         </td>
+
 <% if session.fetch("user_id") == 1 %>
         <td>
-          <a href="/date_votes/<%= a_date_vote.id %>">
+          <a href="/date_votes/<%= a_date.id %>">
             Show details
           </a>
         </td>
@@ -116,7 +137,7 @@
     </h2>
 
 
-    <div class="col-6">
+    <div class="col-3">
     <form action="/insert_upcoming" method="post" class="form-label">
       <div>
         <label for="location_box">
@@ -172,13 +193,19 @@
           Created at
         </th>
 
+
+         <th>
+          Upvotes
+        </th>
+
+        <th>
+          Downvotes
+        </th>
+
         <th>
           Vote
-        </th>
-        
-        <th>
-          Votes
-        </th>
+        </th>               
+
 <% if session.fetch("user_id") == 1 %>
         <th>
         </th>
@@ -205,6 +232,14 @@
         </td>
 
         <td>
+          <%= an_upcoming.upvote %>
+        </td>
+
+        <td>
+          <%= an_upcoming.downvote %>
+        </td>  
+
+        <td>
           <div>
         <a href="/upvote/<%= an_upcoming.id %>">
           Upvote
@@ -214,10 +249,8 @@
           Downvote
         </a>
         </td>
-        
-        <td>
-          <%= an_upcoming.votes %>
-        </td>
+      
+
 <% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/upcomings/<%= an_upcoming.id %>">
