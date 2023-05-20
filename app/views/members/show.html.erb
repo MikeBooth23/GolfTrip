@@ -74,19 +74,19 @@
 <hr>
 
 
-<div>
+<div class ="col-3">
   <div>
     <h2>
       Edit member
     </h2>
 
-    <form action="/modify_member/<%= @the_member.id %>"  method="post" >
+    <form action="/modify_member/<%= @the_member.id %>"  method="post" class="form-label">
       <div>
         <label for="name_box">
           Name
         </label>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_member.name %>">
+        <input type="text" id="name_box" name="query_name" value="<%= @the_member.name %>" class="form-control">
       </div>
 
       <div>
@@ -94,7 +94,7 @@
           Nickname
         </label>
 
-        <input type="text" id="nickname_box" name="query_nickname" value="<%= @the_member.nickname %>">
+        <input type="text" id="nickname_box" name="query_nickname" value="<%= @the_member.nickname %>" class="form-control">
       </div>
 
       <div>
@@ -102,7 +102,7 @@
           Hometown
         </label>
 
-        <input type="text" id="hometown_box" name="query_hometown" value="<%= @the_member.hometown %>">
+        <input type="text" id="hometown_box" name="query_hometown" value="<%= @the_member.hometown %>" class="form-control">
       </div>
 
       <div>
@@ -110,7 +110,7 @@
           Bio
         </label>
 
-        <input type="text" id="bio_box" name="query_bio" value="<%= @the_member.bio %>">
+        <input type="text" id="bio_box" name="query_bio" value="<%= @the_member.bio %>" class="form-control">
       </div>
 
       <div>
@@ -118,7 +118,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image" value="<%= @the_member.image %>">
+        <input type="text" id="image_box" name="query_image" value="<%= @the_member.image %>" class="form-control">
       </div>
 
       <button class="btn btn-primary">

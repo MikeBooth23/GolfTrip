@@ -246,11 +246,35 @@ class UpcomingsController < ApplicationController
     
     if the_comment.valid?
       the_comment.save
-      redirect_to("/date_votes/#{the_comment.trip_date_id}", { :notice => "Gallery created successfully." })
+      redirect_to("/date_votes/#{the_comment.trip_date_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/date_votes/#{the_comment.trip_date_id}", { :alert => the_gallery.errors.full_messages.to_sentence })
+      redirect_to("/date_votes/#{the_comment.trip_date_id}", { :alert => "Comment did not properly record" })
+    end
+  end
+
+    def location_comment
+      the_comment = LocationComment.new
+      the_comment.location_id = params.fetch("path_id")
+      the_comment.body = params.fetch("query_body")
+      the_comment.author_id = session.fetch(:user_id)
+      
+      if the_comment.valid?
+        the_comment.save
+        redirect_to("/upcomings/#{the_comment.location_id}", { :notice => "Comment created successfully." })
+      else
+        redirect_to("/upcomings/#{the_comment.location_id}", { :alert => "Comment did not properly record" })
+      end    
+
     end
 
-  end
+    def delete_location_comment
+      the_id = params.fetch("path_id")
+      the_comment = LocationComment.where({ :id => the_id }).at(0)
+      location_id = the_comment.location_id
+  
+      the_comment.destroy
+  
+      redirect_to("/upcomings/#{location_id}", { :notice => "Comment deleted successfully."} )
+    end
 
 end

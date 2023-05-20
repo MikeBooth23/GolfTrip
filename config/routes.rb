@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
 
-  get("/", {:controller => "members", :action => "index"})
+  get("/", {:controller => "upcomings", :action => "index"})
   # Routes for the User account:
 
   get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })        
@@ -60,7 +60,8 @@ Rails.application.routes.draw do
   # Routes for the Upcoming resource:
   # CREATE
   post("/insert_upcoming", { :controller => "upcomings", :action => "create" })
-  post("/insert_comment/:path_id", {:controller => "upcomings", :action => "date_comment"})  
+  post("/insert_location_comment/:path_id", {:controller => "upcomings", :action => "location_comment"})
+  get("/delete_location_comment/:path_id", {:controller => "upcomings", :action => "delete_location_comment"})
   # READ
   get("/upcomings", { :controller => "upcomings", :action => "index" })
   get("/upcomings/:path_id", { :controller => "upcomings", :action => "show" })
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
   get("/undo_downvote/:location_id", { :controller => "upcomings", :action => "undo_downvote"})  
       # CREATE DATE VOTE
       post("/insert_date_vote", { :controller => "upcomings", :action => "create_date" }) 
+      post("/insert_comment/:path_id", {:controller => "upcomings", :action => "date_comment"}) 
       # READ DATE VOTE
       #get("/date_votes", { :controller => "date_votes", :action => "index" })
       get("/date_votes/:path_id", { :controller => "upcomings", :action => "show_date" })

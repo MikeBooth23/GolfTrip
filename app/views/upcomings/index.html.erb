@@ -1,6 +1,7 @@
 
 
 
+<hr>
 
 <div>
   <div>
@@ -9,8 +10,6 @@
     </h2>
   </div>
 </div>
-
-<hr>
 
 <% if session.fetch("user_id") == 1 %>
 <div>
@@ -212,7 +211,6 @@
         </td>
 
         <td>
-          <%#= an_upcoming.image %>
           <%= image_tag(an_upcoming.image, width: "200") if an_upcoming.image.present? %>
         </td>
 

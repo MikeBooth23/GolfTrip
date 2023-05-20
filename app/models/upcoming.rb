@@ -12,6 +12,13 @@
 #  updated_at  :datetime         not null
 #
 class Upcoming < ApplicationRecord
+  def comment
+    my_id = self.id
+
+    matching_comments = LocationComment.where({:location_id => self.id})
+
+    return matching_comments
+  end
 end
 
 

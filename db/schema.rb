@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_20_153426) do
+ActiveRecord::Schema.define(version: 2023_05_20_181511) do
 
   create_table "date_comments", force: :cascade do |t|
     t.integer "trip_date_id"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2023_05_20_153426) do
     t.string "winning_team"
     t.string "losing_team"
     t.string "punishment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "location_comments", force: :cascade do |t|
+    t.integer "location_id"
+    t.string "body"
+    t.integer "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
