@@ -10,9 +10,9 @@
 
 <div>
   <div class="col-3">
-    <h2>
+    <h4>
       Add a new photo
-    </h2>
+    </h4>
 
     <form action="/insert_gallery" method="post" class="form-label">
       <div>
@@ -47,7 +47,7 @@
 </div>
 
 <hr>
-<div class="col-9">
+<div class="col-6">
   <div>
     <table border="1" class="table text-center align-middle">
       <tr>
@@ -64,9 +64,6 @@
           Description
         </th>
 
-        <th>
-          Votes
-        </th>
 <% if session.fetch("user_id") == 1 %>
         <th>
         </th>
@@ -82,20 +79,17 @@
 
         <td>
           <%#= a_gallery.image %>
-          <%= image_tag(a_gallery.image, width: "200") if a_gallery.image.present? %>
+          <%= image_tag(a_gallery.image, width: "400") if a_gallery.image.present? %>
         </td>
 
         <td>
           <%= a_gallery.description %>
         </td>
 
-        <td>
-          <%= a_gallery.votes %>
-        </td>
 <% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/galleries/<%= a_gallery.id %>">
-            Show details
+            Details
           </a>
         </td>
 <% end %>

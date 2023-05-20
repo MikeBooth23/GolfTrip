@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Historical #<%= @the_historical.id %> details
+      Golf Trip #<%= @the_historical.id %> Details
     </h1>
 
     <div>
@@ -47,19 +47,6 @@
         <%= @the_historical.punishment %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_historical.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_historical.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
@@ -70,7 +57,7 @@
 <div>
   <div>
     <h2>
-      Edit historical
+      Edit Trip Details
     </h2>
 
     <form action="/modify_historical/<%= @the_historical.id %>"  method="post" >
@@ -106,7 +93,7 @@
         <input type="text" id="punishment_box" name="query_punishment" value="<%= @the_historical.punishment %>">
       </div>
 
-      <button>
+      <button class="btn btn-primary">
         Update historical
       </button>
     </form>

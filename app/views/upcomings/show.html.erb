@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Upcoming #<%= @the_upcoming.id %> details
+      Upcoming Trip #<%= @the_upcoming.id %> Details
     </h1>
 
     <div>
@@ -10,12 +10,17 @@
           Go back
         </a>
       </div>
+      <p>
 
+      </p>
+
+      <% if session.fetch(:user_id) == 1%>
       <div>
         <a href="/delete_upcoming/<%= @the_upcoming.id %>">
           Delete upcoming
         </a>
       </div>
+      <% end %>
     </div>
 
     <dl>
@@ -31,7 +36,7 @@
       </dt>
       <dd>
         <%#= @the_upcoming.image %>
-        <%= image_tag(@the_upcoming.image, width: "200") if @the_upcoming.image.present? %>
+        <%= image_tag(@the_upcoming.image, width: "400") if @the_upcoming.image.present? %>
       </dd>
 
       <dt>
@@ -42,10 +47,17 @@
       </dd>
 
       <dt>
-        Votes
+        Upvotes
       </dt>
       <dd>
-        <%= @the_upcoming.votes %>
+        <%= @the_upcoming.upvote %>
+      </dd>
+
+      <dt>
+        Downvotes
+      </dt>
+      <dd>
+        <%= @the_upcoming.downvote %>
       </dd>
 
       <dt>
@@ -55,19 +67,13 @@
         <%= time_ago_in_words(@the_upcoming.created_at) %> ago
       </dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_upcoming.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
 
 <hr>
 
-
+<% if session.fetch(:user_id) ==1 %>
 <div>
   <div>
     <h2>
@@ -99,14 +105,6 @@
         <input type="text" id="price_range_box" name="query_price_range" value="<%= @the_upcoming.price_range %>">
       </div>
 
-      <div>
-        <label for="votes_box">
-          Votes
-        </label>
-
-        <input type="text" id="votes_box" name="query_votes" value="<%= @the_upcoming.votes %>">
-      </div>
-
       <button>
         Update upcoming
       </button>
@@ -115,3 +113,4 @@
 </div>
 
 <hr>
+<% end %>

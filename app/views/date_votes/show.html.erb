@@ -1,23 +1,27 @@
 <div>
   <div>
     <h1>
-      Date vote #<%= @the_date_vote.id %> details
+      Date #<%= @the_date_vote.id %> Details
     </h1>
 
     <div>
       <div>
-        <a href="/date_votes">
+        <a href="/upcomings">
           Go back
         </a>
       </div>
+    
+    <p>
+    </p>
 
+<% if session.fetch(:user_id) == 1%>
       <div>
         <a href="/delete_date_vote/<%= @the_date_vote.id %>">
-          Delete date vote
+          Delete date
         </a>
       </div>
+<% end %>
     </div>
-
     <dl>
       <dt>
         Date
@@ -27,11 +31,17 @@
       </dd>
 
       <dt>
-        Votes
+        Upvotes
       </dt>
       <dd>
-        <%= @the_date_vote.votes %>
+        <%= @the_date_vote.upvotes %>
       </dd>
+       <dt>
+        Downvotes
+      </dt>
+      <dd>
+        <%= @the_date_vote.downvotes %>
+      </dd>     
 
       <dt>
         Created at
@@ -40,12 +50,6 @@
         <%= time_ago_in_words(@the_date_vote.created_at) %> ago
       </dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_date_vote.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
@@ -53,10 +57,11 @@
 <hr>
 
 
+<% if session.fetch(:user_id) == 1 %>
 <div>
   <div>
     <h2>
-      Edit date vote
+      Edit Date
     </h2>
 
     <form action="/modify_date_vote/<%= @the_date_vote.id %>"  method="post" >
@@ -68,19 +73,58 @@
         <input type="date" id="date_box" name="query_date" value="<%= @the_date_vote.date %>">
       </div>
 
-      <div>
-        <label for="votes_box">
-          Votes
-        </label>
-
-        <input type="text" id="votes_box" name="query_votes" value="<%= @the_date_vote.votes %>">
-      </div>
-
-      <button>
-        Update date vote
+      <button class="btn btn-primary">
+        Update Date
       </button>
     </form>
   </div>
 </div>
 
 <hr>
+<% end %>
+
+<h2> Comments </h2>
+
+<div class="col-6">
+<table border="1" class="table text-center align-middle">
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+<% @the_date_vote.comment.each do |a_comment| %>
+  <tr>
+    <td>
+      <%= a_comment.commenter.username %>
+    </td>
+
+    <td>
+      <%= a_comment.body %>
+    </td>
+
+    <td>
+      <%= a_comment.created_at %>
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+
+<div class="col-3">
+<h3> Add new comment </h3>
+    <form action="/insert_comment/<%= params.fetch("path_id")%>" method="post" class="form-label">
+      <div>
+        <label for="comment_box">
+          Comment
+        </label>
+
+        <input type="text" id="comment_box" name="query_body" class="form-control">
+      </div>
+
+      <button class="btn btn-primary">
+      Add Comment
+      </button>
+    </form>
+</div>

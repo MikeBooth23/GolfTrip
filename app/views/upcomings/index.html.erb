@@ -15,9 +15,9 @@
 <% if session.fetch("user_id") == 1 %>
 <div>
   <div>
-    <h2>
-      Add a new date vote
-    </h2>
+    <h4>
+      Add a new date
+    </h4>
 
     <div class="col-2">
     <form action="/insert_date_vote" method="post" class="form-label">
@@ -59,11 +59,9 @@
         <th>
         Vote
         </th>
-<% if session.fetch("user_id") == 1 %>
         <th>
 
         </th>
-<% end %>
       </tr>
 
       <% @list_of_dates.each do |a_date| %>
@@ -104,13 +102,11 @@
         <% end %>
         </td>
 
-<% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/date_votes/<%= a_date.id %>">
-            Show details
+            Details
           </a>
         </td>
-<% end %>
       </tr>
       <% end %>
     </table>
@@ -132,9 +128,9 @@
 <div>
   <div>
     
-    <h2>
+    <h4>
       Add a new upcoming
-    </h2>
+    </h4>
 
 
     <div class="col-3">
@@ -205,11 +201,8 @@
         <th>
           Vote
         </th>               
-
-<% if session.fetch("user_id") == 1 %>
         <th>
         </th>
-<% end %>
       </tr>
 
       <% @list_of_upcomings.each do |an_upcoming| %>
@@ -262,14 +255,11 @@
         <% end %>
         </td>
       
-
-<% if session.fetch("user_id") == 1 %>
         <td>
           <a href="/upcomings/<%= an_upcoming.id %>">
-            Show details
+            Details
           </a>
         </td>
-<% end %>
 <% end %>
       </tr>
     </table>

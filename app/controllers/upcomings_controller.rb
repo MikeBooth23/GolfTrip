@@ -27,7 +27,8 @@ class UpcomingsController < ApplicationController
     the_upcoming.location = params.fetch("query_location")
     the_upcoming.image = params.fetch("query_image")
     the_upcoming.price_range = params.fetch("query_price_range")
-    the_upcoming.votes = 0
+    the_upcoming.upvote = 0
+    the_upcoming.downvote = 0
 
     if the_upcoming.valid?
       the_upcoming.save
@@ -235,6 +236,21 @@ class UpcomingsController < ApplicationController
     the_date.save
 
     redirect_to("/upcomings", { :notice => "You removed your upvote!"} )
+  end
+
+  def date_comment
+    the_comment = DateComment.new
+    the_comment.trip_date_id = params.fetch("path_id")
+    the_comment.body = params.fetch("query_body")
+    the_comment.author_id = session.fetch(:user_id)
+    
+    if the_comment.valid?
+      the_comment.save
+      redirect_to("/date_votes/#{the_comment.trip_date_id}", { :notice => "Gallery created successfully." })
+    else
+      redirect_to("/date_votes/#{the_comment.trip_date_id}", { :alert => the_gallery.errors.full_messages.to_sentence })
+    end
+
   end
 
 end

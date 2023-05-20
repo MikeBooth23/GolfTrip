@@ -11,9 +11,12 @@
         </a>
       </div>
 
+      <p>
+      </p>
+
       <div>
         <a href="/delete_gallery/<%= @the_gallery.id %>">
-          Delete gallery
+          Delete photo
         </a>
       </div>
     </div>
@@ -54,12 +57,6 @@
         <%= time_ago_in_words(@the_gallery.created_at) %> ago
       </dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_gallery.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
@@ -98,15 +95,7 @@
         <input type="text" id="description_box" name="query_description" value="<%= @the_gallery.description %>">
       </div>
 
-      <div>
-        <label for="votes_box">
-          Votes
-        </label>
-
-        <input type="text" id="votes_box" name="query_votes" value="<%= @the_gallery.votes %>">
-      </div>
-
-      <button>
+      <button class="btn btn-primary">
         Update gallery
       </button>
     </form>

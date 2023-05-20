@@ -59,7 +59,8 @@ Rails.application.routes.draw do
 
   # Routes for the Upcoming resource:
   # CREATE
-  post("/insert_upcoming", { :controller => "upcomings", :action => "create" })  
+  post("/insert_upcoming", { :controller => "upcomings", :action => "create" })
+  post("/insert_comment/:path_id", {:controller => "upcomings", :action => "date_comment"})  
   # READ
   get("/upcomings", { :controller => "upcomings", :action => "index" })
   get("/upcomings/:path_id", { :controller => "upcomings", :action => "show" })

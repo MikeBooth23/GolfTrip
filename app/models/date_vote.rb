@@ -3,7 +3,6 @@
 # Table name: date_votes
 #
 #  id         :integer          not null, primary key
-#  date       :date
 #  downvotes  :integer
 #  upvotes    :integer
 #  created_at :datetime         not null
