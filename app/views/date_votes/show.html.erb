@@ -91,6 +91,7 @@
     <th>Commenter</th>
     <th>Comment</th>
     <th>Posted</th>
+    <th></th>
   </tr>
 
 <% @the_date_vote.comment.each do |a_comment| %>
@@ -106,6 +107,17 @@
     <td>
       <%= a_comment.created_at %>
     </td>
+    <% if session.fetch(:user_id) == a_comment.commenter.id %>
+    <td>
+      <a href="/delete_date_comment/<%= a_comment.id %>">
+        Delete Comment
+      </a>
+    </td>
+    <% else %>
+    <td>
+      
+    </td>
+    <% end %>
   </tr>
 <% end %>
 </table>

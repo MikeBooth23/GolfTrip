@@ -277,4 +277,14 @@ class UpcomingsController < ApplicationController
       redirect_to("/upcomings/#{location_id}", { :notice => "Comment deleted successfully."} )
     end
 
+    def delete_date_comment
+      the_id = params.fetch("path_id")
+      the_comment = DateComment.where({ :id => the_id }).at(0)
+      trip_date_id = the_comment.trip_date_id
+  
+      the_comment.destroy
+  
+      redirect_to("/date_votes/#{trip_date_id}", { :notice => "Comment deleted successfully."} )
+    end
+
 end

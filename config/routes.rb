@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       # CREATE DATE VOTE
       post("/insert_date_vote", { :controller => "upcomings", :action => "create_date" }) 
       post("/insert_comment/:path_id", {:controller => "upcomings", :action => "date_comment"}) 
+      get("/delete_date_comment/:path_id", {:controller => "upcomings", :action => "delete_date_comment"})   
       # READ DATE VOTE
       #get("/date_votes", { :controller => "date_votes", :action => "index" })
       get("/date_votes/:path_id", { :controller => "upcomings", :action => "show_date" })
