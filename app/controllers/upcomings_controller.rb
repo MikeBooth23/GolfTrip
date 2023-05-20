@@ -78,6 +78,21 @@ class UpcomingsController < ApplicationController
     redirect_to("/upcomings", { :notice => "Upvoted!"} )
   end
 
+  def undo_upvote
+    the_id = params.fetch("location_id")
+    the_upvote = LocationVote.where({ :location_id => the_id }).where({:user_id => session.fetch("user_id")}).where({:upvotes => 1}).at(0)
+
+    the_upvote.upvotes=0
+    the_upvote.save
+
+    the_upcoming = Upcoming.where({ :id => the_id}).at(0)
+
+    the_upcoming.upvote = LocationVote.all.where({:location_id => the_id}).sum(:upvotes)
+    the_upcoming.save
+
+    redirect_to("/upcomings", { :notice => "You removed your upvote!"} )
+  end
+
   def downvote
     vote = LocationVote.new
     id = params.fetch("location_id")
@@ -92,6 +107,21 @@ class UpcomingsController < ApplicationController
     the_upcoming.save
 
     redirect_to("/upcomings", { :notice => "Downvoted"} )
+  end
+
+  def undo_downvote
+    the_id = params.fetch("location_id")
+    the_downvote = LocationVote.where({ :location_id => the_id }).where({:user_id => session.fetch("user_id")}).where({:downvotes => 1}).at(0)
+
+    the_downvote.downvotes=0
+    the_downvote.save
+
+    the_upcoming = Upcoming.where({ :id => the_id}).at(0)
+
+    the_upcoming.downvote = LocationVote.all.where({:location_id => the_id}).sum(:downvotes)
+    the_upcoming.save
+
+    redirect_to("/upcomings", { :notice => "You removed your downvote!"} )
   end
 
   def show_date

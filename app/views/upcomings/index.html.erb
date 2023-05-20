@@ -241,13 +241,25 @@
 
         <td>
           <div>
+        <% if LocationVote.all.where({:user_id => session.fetch("user_id")}).where({:location_id => an_upcoming.id}).sum(:upvotes) == 1 %>
+        <a href="/undo_upvote/<%= an_upcoming.id %>">
+          Undo Upvote
+        </a>
+        <% else %>
         <a href="/upvote/<%= an_upcoming.id %>">
           Upvote
         </a>
+        <% end %>
           </div>
+        <% if LocationVote.all.where({:user_id => session.fetch("user_id")}).where({:location_id => an_upcoming.id}).sum(:downvotes) == 1 %>
+        <a href="/undo_downvote/<%= an_upcoming.id %>">
+          Undo Downvote
+        </a>
+        <% else %>
         <a href="/downvote/<%= an_upcoming.id %>">
           Downvote
         </a>
+        <% end %>
         </td>
       
 

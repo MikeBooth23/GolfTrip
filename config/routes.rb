@@ -69,8 +69,12 @@ Rails.application.routes.draw do
   get("/delete_upcoming/:path_id", { :controller => "upcomings", :action => "destroy" })
   # UPVOTE
   get("/upvote/:location_id", { :controller => "upcomings", :action => "upvote"})
+  # UDNO UPVOTE
+  get("/undo_upvote/:location_id", { :controller => "upcomings", :action => "undo_upvote"})  
   # DOWNVOTE
   get("/downvote/:location_id", { :controller => "upcomings", :action => "downvote"})
+  # UNDO DOWNVOTE
+  get("/undo_downvote/:location_id", { :controller => "upcomings", :action => "undo_downvote"})  
       # CREATE DATE VOTE
       post("/insert_date_vote", { :controller => "upcomings", :action => "create_date" }) 
       # READ DATE VOTE
